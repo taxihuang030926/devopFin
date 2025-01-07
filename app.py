@@ -5,7 +5,7 @@ import mysql.connector as mc
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
 
-db = mc.connect(host="localhost", port=3306, user="admint", password="12341234", database="mid")
+db = mc.connect(host="localhost", port=3306, user="admint", password="12341234", database="resumes")
 cursor = db.cursor()
 
 @app.route('/')
