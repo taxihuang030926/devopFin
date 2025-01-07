@@ -8,19 +8,18 @@ app.secret_key = os.urandom(24)
 db = mc.connect(host="localhost", port=3306, user="admint", password="12341234", database="devopFin")
 cursor = db.cursor()
 
-@app.route('/')
+@app.route('/') # done
 def index():
     if 'username' in session:
         return render_template('index.html', username=session['username'])
     return render_template('index.html')
 
-@app.route('/login')
+@app.route('/login') # done
 def login():
     return render_template('login.html')
 
-@app.route('/login', methods=['POST'])
+@app.route('/login', methods=['POST']) # done
 def login_post():
-    print("in login_post")
     username = request.form['username']
     password = request.form['password']
 
@@ -31,7 +30,6 @@ def login_post():
     query = "SELECT * FROM User WHERE ID = '%s'" % username
     cursor.execute(query)
     user = cursor.fetchone()
-    print(user)
     
     if not user or user[1] != password:
         flash('Invalid username or password!', 'error')
@@ -41,7 +39,7 @@ def login_post():
     flash('Login successful!', 'success')
     return redirect(url_for('index'))
 
-@app.route('/logout')
+@app.route('/logout') # done
 def logout():
     if 'username' in session:
         session.pop('username')
@@ -50,29 +48,32 @@ def logout():
         flash('You are not logged in.', 'info')
     return redirect(url_for('index'))
 
-@app.route('/register')
+@app.route('/register') # done
 def register():
-    return render_template('register.html', username=session['username'])
+    return render_template('register.html')
 
-@app.route('/register', methods=['POST'])
+@app.route('/register', methods=['POST']) 
 def register_post():
+    print('register_post')
     username = request.form['username']
     password = request.form['password']
 
     if not username or not password:
         flash('Username and password are required!', 'error')
-        return redirect(url_for('register_form'))
+        return redirect(url_for('register'))
     
-    query = "SELECT * FROM User WHERE username = %s"
-    cursor.execute(query, (username,))
+    query = "SELECT * FROM User WHERE ID = '%s'" % (username,)
+    print(query)
+    cursor.execute(query)
     user = cursor.fetchone()
+    print(user)
     
-    if user:
+    if user != None:
         flash('Username already exists!', 'error')
-        return redirect(url_for('register_form'))
+        return redirect(url_for('register'))
     
-    query = "INSERT INTO User (username, password) VALUES (%s, %s)"
-    cursor.execute(query, (username, password))
+    query = "INSERT INTO User (ID, pwd) VALUES ('%s', '%s')" % (username, password)
+    cursor.execute(query)
     db.commit()
     
     session['username'] = username
@@ -94,22 +95,22 @@ def companies():
 
 @app.route('/about_company/<int:company_id>')
 def about_company(company_id):
-    cursor.execute("SELECT * FROM CompanyInfo WHERE company_id = %s", (company_id,))
+    cursor.execute("SELECT * FROM CompanyInformation WHERE company_id = '%s'", (company_id,))
     company = cursor.fetchone()
 
-    cursor.execute("SELECT * FROM CompanyIntroduction WHERE company_id = %s", (company_id,))
+    cursor.execute("SELECT * FROM CompanyIntroduction WHERE company_id = '%s'", (company_id,))
     introduction = cursor.fetchone()
     
-    cursor.execute("SELECT * FROM BusinessPhilosophy WHERE company_id = %s", (company_id,))
+    cursor.execute("SELECT * FROM BusinessPhilosophy WHERE company_id = '%s'", (company_id,))
     philosophy = cursor.fetchone()
 
-    cursor.execute("SELECT * FROM CompanyBenefits WHERE company_id = %s", (company_id,))
+    cursor.execute("SELECT * FROM CompanyBenefits WHERE company_id = '%s'", (company_id,))
     benefits = cursor.fetchall()
     
-    cursor.execute("SELECT * FROM JobOpenings WHERE company_id = %s", (company_id,))
+    cursor.execute("SELECT * FROM JobOpenings WHERE company_id = '%s'", (company_id,))
     jobs = cursor.fetchall()
     
-    cursor.execute("SELECT * FROM ContactInfo WHERE company_id = %s", (company_id,))
+    cursor.execute("SELECT * FROM ContactInfo WHERE company_id = '%s'", (company_id,))
     contact = cursor.fetchone()
 
     if 'username' not in session:
@@ -172,7 +173,7 @@ def submit_cv():
     # 插入資料到資料庫
     query = """
     INSERT INTO resumes (first_name, last_name, contact_info, transport, school_name, education_level, department, study_status, work_experience)
-    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+    VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')
     """
     cursor.execute(query, (first_name, last_name, contact_info, transport, school_name, education_level, department, study_status, work_experience))
     db.commit()
@@ -222,10 +223,10 @@ def edit_cv():
         # 更新資料庫
         query = """
         UPDATE resumes
-        SET first_name = %s, last_name = %s, contact_info = %s, transport = %s,
-            school_name = %s, education_level = %s, department = %s,
-            study_status = %s, work_experience = %s
-        WHERE id = %s
+        SET first_name = '%s', last_name = '%s', contact_info = '%s', transport = '%s',
+            school_name = '%s', education_level = '%s', department = '%s',
+            study_status = '%s', work_experience = '%s'
+        WHERE id = '%s'
         """
         cursor.execute(query, (first_name, last_name, contact_info, transport,
                                school_name, education_level, department,
