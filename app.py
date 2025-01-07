@@ -93,6 +93,10 @@ def about_company():
 def cv():
     return render_template('cv.html')
 
+@app.route('/uploadCV')
+def uploadCV():
+    return render_template('uploadCV.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
