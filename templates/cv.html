@@ -43,26 +43,28 @@
             </div>
         </nav>
     </div>
-  </nav>
-</div>
 
-<div class="cv-container container">
-    <h1 class="section-title">個人履歷</h1>
-  
-    <!-- 履歷顯示區 -->
-    <div id="cv-display" class="info-box">
-      {% if resume %}
-        <p><strong>姓名:</strong> {{ resume[1] }} {{ resume[2] }}</p>
-        <p><strong>聯絡資訊:</strong> {{ resume[3] }}</p>
-        <p><strong>交通工具:</strong> {{ resume[4] }}</p>
-        <p><strong>學校名稱:</strong> {{ resume[5] }}</p>
-        <p><strong>學歷:</strong> {{ resume[6] }}</p>
-        <p><strong>科系:</strong> {{ resume[7] }}</p>
-        <p><strong>學習狀況:</strong> {{ resume[8] }}</p>
-        <p><strong>工作經驗:</strong> {{ resume[9] }}</p>
-      {% else %}
-        <p>目前尚未上傳履歷。</p>
-      {% endif %}
+    <div class="cv-container container">
+        <h1 class="section-title">個人履歷</h1>
+    
+        <!-- 履歷顯示區 -->
+        <div id="cv-display" class="info-box">
+        {% if resume %}
+            <p><strong>姓名:</strong> {{ resume[1] }} {{ resume[2] }}</p>
+            <p><strong>聯絡資訊:</strong> {{ resume[3] }}</p>
+            <p><strong>交通工具:</strong> {{ resume[4] }}</p>
+            <p><strong>學校名稱:</strong> {{ resume[5] }}</p>
+            <p><strong>學歷:</strong> {{ resume[6] }}</p>
+            <p><strong>科系:</strong> {{ resume[7] }}</p>
+            <p><strong>學習狀況:</strong> {{ resume[8] }}</p>
+            <p><strong>工作經驗:</strong> {{ resume[9] }}</p>
+        {% else %}
+            <p>目前尚未上傳履歷。</p>
+        {% endif %}
+        </div>
+    
+        <!-- 顯示上傳按鈕，並連結到 uploadCV.html -->
+        <a href="uploadCV" class="btn btn-primary">上傳履歷</a>
     </div>
   
     <!-- 按鈕區 -->
@@ -74,11 +76,11 @@
               求職攻略
             </button>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="https://careermaster.1111.com.tw/careermaster/resume/JobArticleAll">求職文章</a></li>
-              <li><a class="dropdown-item" href="https://careermaster.1111.com.tw/careermaster/resume/JobQA">求職QA</a></li>
-              <li><a class="dropdown-item" href="https://www.1111.com.tw/1000w/fanshome/discuss.asp?gkind=136&cat=fans&act=search&kind=5&q=%E7%B2%BE%E9%81%B8%E6%8A%95%E7%A8%BF">面試分享</a></li>
+                <li><a class="dropdown-item" href="https://careermaster.1111.com.tw/careermaster/resume/JobArticleAll">求職文章</a></li>
+                <li><a class="dropdown-item" href="https://careermaster.1111.com.tw/careermaster/resume/JobQA">求職QA</a></li>
+                <li><a class="dropdown-item" href="https://www.1111.com.tw/1000w/fanshome/discuss.asp?gkind=136&cat=fans&act=search&kind=5&q=%E7%B2%BE%E9%81%B8%E6%8A%95%E7%A8%BF">面試分享</a></li>
             </ul>
-          </div>
+         </div>
     
           <!-- 履歷範本按鈕 -->
           <a href="https://careermaster.1111.com.tw/careermaster/resume/Template?Position=%E7%AE%A1%E7%90%86%E5%B9%95%E5%83%9A%EF%BC%8F%E4%BA%BA%E8%B3%87%EF%BC%8F%E8%A1%8C%E6%94%BF" class="btn btn-info" target="_blank">履歷範本</a>
@@ -90,7 +92,7 @@
       
       <!-- 求職攻略下拉選單 -->
   
-</div>
-    
+    </div>
+
 </body>
 </html>

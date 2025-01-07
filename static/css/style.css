@@ -1,16 +1,8 @@
 html, body {
-    margin: 0;
+    margin: 0px;
     height: 100%;
 }
 
-.Absolute-center {
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    display: flex;
-    flex-flow: column;
-    
-}
 
 .btn-outline-success{
     --bs-btn-color:#ff9500;
@@ -27,4 +19,12 @@ html, body {
     --bs-btn-disabled-bg:transparent;
     --bs-btn-disabled-border-color:#ff9500;
     --bs-gradient:none
+}
+
+.companies-container {
+    margin-top: 50px;
+}
+
+.register-container {
+    margin-top: 50px;
 }
