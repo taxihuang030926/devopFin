@@ -113,15 +113,16 @@ TODO:
 
 .
 |
-|- index.html [tim done]
-|- login.html [kung done]
-|- register.html [tim partial]
-|- companies.html [tim in progress]
-|- about_company.html (by clicking on the company button in companies.html, it will redirect to this page. 
-|   fetch the data from the database then render it, show link to company website, (user should be logged in) show vacancies available & details)
-|  [tim ]
-|- vacancies.html [tim ]
-|- cv.html [chiao in progress] (provide a cv template for the user to fill in)
+|-  index.html [tim done]
+|-  register.html [tim partial]
+|-  companies.html [tim in progress]
+|   |-  about_company.html (by clicking on the company button in companies.html,
+|   |   it will redirect to this page. 
+|   |   fetch the data from the database then render it, show link to company website, (user should be logged in) show vacancies available & details)
+|   |   [tim ]
+|-  vacancies.html [tim ]
+|-  cv.html [chiao in progress] (provide a cv template for the user to fill in)
+|-  login.html [kung done]
 
 
 '''
