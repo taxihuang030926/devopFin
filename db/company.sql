@@ -1,11 +1,11 @@
-DROP TABLE IF EXISTS ContactInfo;
+DROP TABLE IF EXISTS CompanyInfo;
 DROP TABLE IF EXISTS JobOpenings;
 DROP TABLE IF EXISTS CompanyBenefits;
 DROP TABLE IF EXISTS BusinessPhilosophy;
 DROP TABLE IF EXISTS CompanyIntroduction;
-DROP TABLE IF EXISTS CompanyInfor;
+DROP TABLE IF EXISTS CompanyInformation;
 
-CREATE TABLE CompanyInfor (
+CREATE TABLE CompanyInformation (
     company_id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     industry_category VARCHAR(100) NOT NULL,
@@ -27,7 +27,7 @@ CREATE TABLE CompanyIntroduction (
     company_id INT NOT NULL,
     description TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (company_id) REFERENCES CompanyInfor(company_id)
+    FOREIGN KEY (company_id) REFERENCES CompanyInformation(company_id)
 );
 /*
 建立徵才/經營理念
@@ -58,7 +58,7 @@ CREATE TABLE JobOpenings (
     job_status ENUM('open', 'close') NOT NULL DEFAULT 'open',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (company_id) REFERENCES CompanyInfor(company_id),
+    FOREIGN KEY (company_id) REFERENCES CompanyInformation(company_id),
     INDEX idx_status (job_status),
     INDEX idx_upload_time (upload_time)
 );
@@ -77,7 +77,7 @@ CREATE TABLE ContactInfo (
 /*
 公司基本資訊
 */
-INSERT INTO CompanyInfor (company_id, name, industry_category, industry_describe, employee_count, capital_amount, address, website)
+INSERT INTO CompanyInformation (company_id, name, industry_category, industry_describe, employee_count, capital_amount, address, website)
 VALUES 
 (1, '南茂科技股份有限公司', '半導體製造業', '半導體相關業', 6000, '89億6200萬元', '新竹市研發一路1號', '
 https://www.chipmos.com/index.aspx'),

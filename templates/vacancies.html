@@ -31,8 +31,17 @@
                             <a class="nav-link active" href="cv">我的履歷</a>
                         </li>
                         <li class="nav-item">
+                            {% if username %}
+                            <a class="btn btn-outline-danger" href="logout" role="button">登出</a>
+                            {% else %}
                             <a class="btn btn-outline-success" href="login" role="button">登入</a>
+                            {% endif %}
                         </li>
+                        {% if username %}
+                        <li class="nav-item">
+                            <a class="nav-link disabled">你好，{{ username }}！</a>
+                        </li>
+                        {% endif %}
                     </ul>
                     <form class="d-flex" role="search">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
