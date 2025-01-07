@@ -214,10 +214,6 @@ def edit_cv():
         flash('履歷修改成功！', 'success')
         return redirect(url_for('cv'))
 
-@app.route('/uploadCV')
-def uploadCV():
-    return render_template('uploadCV.html')
-
 
 if __name__ == '__main__':
     app.run(debug=True)
