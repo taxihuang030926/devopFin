@@ -43,31 +43,29 @@
             </div>
         </nav>
     </div>
-  </nav>
-</div>
 
-<div class="cv-container container">
-    <h1 class="section-title">個人履歷</h1>
-  
-    <!-- 履歷顯示區 -->
-    <div id="cv-display" class="info-box">
-      {% if resume %}
-        <p><strong>姓名:</strong> {{ resume[1] }} {{ resume[2] }}</p>
-        <p><strong>聯絡資訊:</strong> {{ resume[3] }}</p>
-        <p><strong>交通工具:</strong> {{ resume[4] }}</p>
-        <p><strong>學校名稱:</strong> {{ resume[5] }}</p>
-        <p><strong>學歷:</strong> {{ resume[6] }}</p>
-        <p><strong>科系:</strong> {{ resume[7] }}</p>
-        <p><strong>學習狀況:</strong> {{ resume[8] }}</p>
-        <p><strong>工作經驗:</strong> {{ resume[9] }}</p>
-      {% else %}
-        <p>目前尚未上傳履歷。</p>
-      {% endif %}
+    <div class="cv-container container">
+        <h1 class="section-title">個人履歷</h1>
+    
+        <!-- 履歷顯示區 -->
+        <div id="cv-display" class="info-box">
+        {% if resume %}
+            <p><strong>姓名:</strong> {{ resume[1] }} {{ resume[2] }}</p>
+            <p><strong>聯絡資訊:</strong> {{ resume[3] }}</p>
+            <p><strong>交通工具:</strong> {{ resume[4] }}</p>
+            <p><strong>學校名稱:</strong> {{ resume[5] }}</p>
+            <p><strong>學歷:</strong> {{ resume[6] }}</p>
+            <p><strong>科系:</strong> {{ resume[7] }}</p>
+            <p><strong>學習狀況:</strong> {{ resume[8] }}</p>
+            <p><strong>工作經驗:</strong> {{ resume[9] }}</p>
+        {% else %}
+            <p>目前尚未上傳履歷。</p>
+        {% endif %}
+        </div>
+    
+        <!-- 顯示上傳按鈕，並連結到 uploadCV.html -->
+        <a href="uploadCV" class="btn btn-primary">上傳履歷</a>
     </div>
-  
-    <!-- 顯示上傳按鈕，並連結到 uploadCV.html -->
-    <a href="uploadCV" class="btn btn-primary">上傳履歷</a>
-  </div>
   
 </body>
 </html>
