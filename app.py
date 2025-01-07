@@ -85,9 +85,33 @@ def vacancies():
 def companies():
     return render_template('companies.html')
 
-@app.route('/about_company')
-def about_company():
-    return render_template('about_company.html')
+@app.route('/about_company/<int:company_id>')
+def about_company(company_id):
+    cursor.execute("SELECT * FROM CompanyInfo WHERE company_id = %s", (company_id,))
+    company = cursor.fetchone()
+
+    cursor.execute("SELECT * FROM CompanyIntroduction WHERE company_id = %s", (company_id,))
+    introduction = cursor.fetchone()
+    
+    cursor.execute("SELECT * FROM BusinessPhilosophy WHERE company_id = %s", (company_id,))
+    philosophy = cursor.fetchone()
+
+    cursor.execute("SELECT * FROM CompanyBenefits WHERE company_id = %s", (company_id,))
+    benefits = cursor.fetchall()
+    
+    cursor.execute("SELECT * FROM JobOpenings WHERE company_id = %s", (company_id,))
+    jobs = cursor.fetchall()
+    
+    cursor.execute("SELECT * FROM ContactInfo WHERE company_id = %s", (company_id,))
+    contact = cursor.fetchone()
+
+    return render_template('about_company.html',
+                           company=company, 
+                           introduction=introduction, 
+                           philosophy=philosophy, 
+                           benefits=benefits, 
+                           jobs=jobs, 
+                           contact=contact)
 
 @app.route('/cv')
 def cv():
@@ -190,31 +214,40 @@ def edit_cv():
         flash('履歷修改成功！', 'success')
         return redirect(url_for('cv'))
 
+@app.route('/uploadCV')
+def uploadCV():
+    return render_template('uploadCV.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
 
 '''
 TODO: 
-1. Create a simple login page with username and password
-2. Create a session for the user
-3. Create a logout function (if user is in session -> logout; button in navbar)
-4. Create a registration page
-5. Create a database to store the user information
-6. Create a function to check if the user is in the database
-7. Create a function to check if the username is correct
-8. Create a function to check if the password is correct
-9. Create a function to search for vacancies or companies in navbar
+1. Create a simple login page with username and password [kung done]
+2. Create a session for the user [tim ]
+3. Create a logout function [tim] (if user is in session -> logout; button in navbar)
+4. Create a registration page [tim partial]
+5. Create a database to store the user information [kung in progress]
+6. Create a function to check if the user is in the database [tim ]
+7. Create a function to check if the username is correct [tim ]
+8. Create a function to check if the password is correct [tim ]
+9. Create a function to search for vacancies or companies in navbar [tim ]
+10. Create CV template [chiao done]
+11. Create a function to render the CV template [chiao in progress]
 
 .
 |
-|- index.html
-|- login.html 
-|- register.html
-|- companies.html
-|- about_company.html (by clicking on the company button in companies.html, it will redirect to this page. 
-|   fetch the data from the database then render it, show link to company website, (user should be logged in) show vacancies available & details)
-|- cv.html (provide a cv template for the user to fill in)
+|-  index.html [tim done]
+|-  register.html [tim partial]
+|-  companies.html [tim partial]
+|   |-  about_company.html (by clicking on the company button in companies.html,
+|   |   it will redirect to this page. 
+|   |   fetch the data from the database then render it, show link to company website, (user should be logged in) show vacancies available & details)
+|   |   [tim ]
+|-  vacancies.html [tim ]
+|-  cv.html [chiao in progress] (provide a cv template for the user to fill in)
+|-  login.html [kung done]
 
 
 '''
