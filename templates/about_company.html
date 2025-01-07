@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>公司簡介</title>
+    <title>{{ company.name }} - 公司簡介</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -65,81 +65,76 @@
 </head>
 <body>
     <header>
-        <h1>公司簡介</h1>
+        <h1>{{ company.name }}</h1>
     </header>
 
     <nav>
-        <a href="#">基本資料</a>
-        <a href="#">簡介</a>
-        <a href="#">經營理念</a>
-        <a href="#">福利與文化</a>
-        <a href="#">目前職缺</a>
-        <a href="#">聯絡方式</a>
+        <a href="#basic-info">基本資料</a>
+        <a href="#introduction">簡介</a>
+        <a href="#philosophy">經營理念</a>
+        <a href="#benefits">福利與文化</a>
+        <a href="#jobs">目前職缺</a>
+        <a href="#contact">聯絡方式</a>
     </nav>
     
     <div class="container">
        
-        <section>
+        <section id="company">
             <h2 class="section-title">公司基本資訊</h2>
             <div class="info-box">
-                <p><strong>公司名稱：</strong> 子午計畫有限公司</p>
-                <p><strong>成立時間：</strong> 2010 年</p>
-                <p><strong>員工人數：</strong> 15 人</p>
-                <p><strong>產業類別：</strong> 多媒體相關業 </p>
-                <p><strong>公司地址：</strong> 桃園市中壢區大華路197號</p>
-                <p><strong>官方網站：</strong> <a href="https://example.com" target="_blank">https://example.com</a></p>
+                <p><strong>公司名稱：</strong> {{ company.name }}</p>
+                <p><strong>產業類別：</strong> {{ company.industry_category }}</p>
+                <p><strong>產業描述：</strong> {{ company.industry_describe }}</p>
+                <p><strong>員工人數：</strong> {{ company.employee_count }}</p>
+                <p><strong>資本額：</strong> {{ company.capital_amount }}</p>
+                <p><strong>地址：</strong> {{ company.address }}</p>
+                <p><strong>官方網站：</strong> <a href="{{ company.website }}" target="_blank">{{ company.website }}</a></p>
             </div>
         </section>
 
-        <section>
+        <section id="introduction">
             <h2 class="section-title">公司簡介</h2>
             <div class="info-box">
-                <p>
-                    子午計畫(Meridian Project)是台灣虛擬藝人經紀公司，為虛擬藝人提供全方位的協助，包括角色設計與塑造、動畫製作、社群經營、品牌推廣、音樂製作、活動策劃、商業合作聯絡等。
-                    與繪師、音樂製作、影片製作等創作者合作，共同為虛擬藝人打造成功的事業，推動他們的事業、夢想。目前旗下共有七名藝人、各有獨自特色與專長。 在台灣二次元虛擬實況主(Vtuber)市場佔有一席之地，每場大型活動粉絲號召力可達千人，也有與國內外知名廠商合作，致力於讓更多人理解虛擬藝人的有趣之處。
-                </p>
+                <p>{{ introduction.description }}</p>
+                
             </div>
         </section>
 
-        <section>
-            <h2 class="section-title">經營理念</h2>
+        <section id="philosophy">
+            <h2 class="section-title">徵才/經營理念</h2>
             <div class="info-box">
-                <p>子午歡迎喜歡挑戰的夥伴們加入，如果你有天馬行空的想法，並擁有將之實現的行動力，我們非常歡迎你的加入，我們雖年輕但一點都不隨便。
-
-                    我們風氣與工作安排非常彈性化，並採取遠端為主的工作環境，適合有自制力、自律的夥伴加入，由於需要配合負責藝人的活動時間，所以也採取部份工時、彈性工時。投遞履歷前請注意我們雖然為遠端工作與彈性工時為主，但並不輕鬆。</p>
+                <p>{{ philosophy.content }}</p>
             </div>
         </section>
 
-        <section>
+        <section id="benefits">
             <h2 class="section-title">福利與文化</h2>
             <div class="info-box">
                 <ul>
-                    <li>完整的員工福利，包括健保、年終獎金等。</li>
-                    <li>定期舉辦員工活動，如家庭日、尾牙。</li>
-                    <li>鼓勵員工進修，提供教育訓練補助。</li>
-                    <li>彈性工時與遠端工作選項。</li>
-                    <li>開放、透明的公司文化，重視每位員工的意見。</li>
+                    {% for benefit in benefits %}
+                    <li>{{ benefit.benefit_description }}</li>
+                    {% endfor %}
                 </ul>
             </div>
         </section>
 
-        <section>
+        <section id="jobs">
             <h2 class="section-title">目前職缺</h2>
             <div class="info-box">
                 <ul>
-                    <li>創作者經紀</li>
-                    <li>原創ACG IP經營</li>
+                    {% for job in jobs %}
+                    <li>{{ job.job_title }} - {{ job.upload_time }} - {{ job.condition }}</li>
+                    {% endfor %}
                 </ul>
             </div>
         </section>
 
-        <section>
+        <section id="contact">
             <h2 class="section-title">聯絡方式</h2>
             <div class="info-box">
                 <ul>
-                    <p><strong>聯絡人 : </strong>張小姐</p>
-                    <p><strong>電話 :</strong> 0954126854</p>
-                    <p><strong>email : </strong>aaa@gmail.com</p>
+                    <p><strong>聯絡人 : </strong>{{ contact.contact_person }}</p>
+                    <p><strong>電話 :</strong> {{ contact.phone_number }}</p>
                 </ul>
             </div>
         </section>
