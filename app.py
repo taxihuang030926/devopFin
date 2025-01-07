@@ -143,7 +143,7 @@ TODO:
 |
 |-  index.html [tim done]
 |-  register.html [tim partial]
-|-  companies.html [tim in progress]
+|-  companies.html [tim partial]
 |   |-  about_company.html (by clicking on the company button in companies.html,
 |   |   it will redirect to this page. 
 |   |   fetch the data from the database then render it, show link to company website, (user should be logged in) show vacancies available & details)
