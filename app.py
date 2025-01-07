@@ -93,31 +93,40 @@ def about_company():
 def cv():
     return render_template('cv.html')
 
+@app.route('/uploadCV')
+def uploadCV():
+    return render_template('uploadCV.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
 
 '''
 TODO: 
-1. Create a simple login page with username and password
-2. Create a session for the user
-3. Create a logout function (if user is in session -> logout; button in navbar)
-4. Create a registration page
-5. Create a database to store the user information
-6. Create a function to check if the user is in the database
-7. Create a function to check if the username is correct
-8. Create a function to check if the password is correct
-9. Create a function to search for vacancies or companies in navbar
+1. Create a simple login page with username and password [kung done]
+2. Create a session for the user [tim ]
+3. Create a logout function [tim] (if user is in session -> logout; button in navbar)
+4. Create a registration page [tim partial]
+5. Create a database to store the user information [kung in progress]
+6. Create a function to check if the user is in the database [tim ]
+7. Create a function to check if the username is correct [tim ]
+8. Create a function to check if the password is correct [tim ]
+9. Create a function to search for vacancies or companies in navbar [tim ]
+10. Create CV template [chiao done]
+11. Create a function to render the CV template [chiao in progress]
 
 .
 |
-|- index.html
-|- login.html 
-|- register.html
-|- companies.html
-|- about_company.html (by clicking on the company button in companies.html, it will redirect to this page. 
-|   fetch the data from the database then render it, show link to company website, (user should be logged in) show vacancies available & details)
-|- cv.html (provide a cv template for the user to fill in)
+|-  index.html [tim done]
+|-  register.html [tim partial]
+|-  companies.html [tim in progress]
+|   |-  about_company.html (by clicking on the company button in companies.html,
+|   |   it will redirect to this page. 
+|   |   fetch the data from the database then render it, show link to company website, (user should be logged in) show vacancies available & details)
+|   |   [tim ]
+|-  vacancies.html [tim ]
+|-  cv.html [chiao in progress] (provide a cv template for the user to fill in)
+|-  login.html [kung done]
 
 
 '''
