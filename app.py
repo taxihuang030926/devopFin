@@ -5,7 +5,7 @@ import mysql.connector as mc
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
 
-db = mc.connect(host="localhost", port=3306, user="admint", password="12341234", database="resumes")
+db = mc.connect(host="localhost", port=3306, user="admint", password="12341234", database="devopFin")
 cursor = db.cursor()
 
 @app.route('/')
@@ -22,11 +22,13 @@ def login():
 def login_post():
     username = request.form['username']
     password = request.form['password']
+    print(username, password)
 
     if not username or not password:
         flash('Username and password are required!', 'error')
         return redirect(url_for('login_form'))
     
+    print(user)
     query = "SELECT * FROM User WHERE username = %s"
     cursor.execute(query, (username,))
     user = cursor.fetchone()
@@ -207,10 +209,6 @@ def edit_cv():
         flash('履歷修改成功！', 'success')
         return redirect(url_for('cv'))
 
-@app.route('/uploadCV')
-def uploadCV():
-    return render_template('uploadCV.html')
-
 
 if __name__ == '__main__':
     app.run(debug=True)
@@ -239,7 +237,7 @@ TODO:
 |   |   fetch the data from the database then render it, show link to company website, (user should be logged in) show vacancies available & details)
 |   |   [tim ]
 |-  vacancies.html [tim ]
-|-  cv.html [chiao in progress] (provide a cv template for the user to fill in)
+|-  cv.html [chiao partial] (provide a cv template for the user to fill in)
 |-  login.html [kung done]
 
 
