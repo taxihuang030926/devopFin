@@ -85,9 +85,33 @@ def vacancies():
 def companies():
     return render_template('companies.html')
 
-@app.route('/about_company')
-def about_company():
-    return render_template('about_company.html')
+@app.route('/about_company/<int:company_id>')
+def about_company(company_id):
+    cursor.execute("SELECT * FROM CompanyInfo WHERE company_id = %s", (company_id,))
+    company = cursor.fetchone()
+
+    cursor.execute("SELECT * FROM CompanyIntroduction WHERE company_id = %s", (company_id,))
+    introduction = cursor.fetchone()
+    
+    cursor.execute("SELECT * FROM BusinessPhilosophy WHERE company_id = %s", (company_id,))
+    philosophy = cursor.fetchone()
+
+    cursor.execute("SELECT * FROM CompanyBenefits WHERE company_id = %s", (company_id,))
+    benefits = cursor.fetchall()
+    
+    cursor.execute("SELECT * FROM JobOpenings WHERE company_id = %s", (company_id,))
+    jobs = cursor.fetchall()
+    
+    cursor.execute("SELECT * FROM ContactInfo WHERE company_id = %s", (company_id,))
+    contact = cursor.fetchone()
+
+    return render_template('about_company.html',
+                           company=company, 
+                           introduction=introduction, 
+                           philosophy=philosophy, 
+                           benefits=benefits, 
+                           jobs=jobs, 
+                           contact=contact)
 
 @app.route('/cv')
 def cv():
