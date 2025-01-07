@@ -54,14 +54,14 @@
 
     <div class="container register-container">
         <h1>註冊</h1>
-        <form class="row g-3">
+        <form class="row g-3" action="register" method="POST">
             <div class="col-md-6">
                 <label for="inputEmail4" class="form-label">Email</label>
-                <input type="email" class="form-control" id="inputEmail4" required>
+                <input type="email" class="form-control" id="username" name="username" required>
             </div>
             <div class="col-md-6">
                 <label for="inputPassword4" class="form-label" >密碼</label>
-                <input type="password" class="form-control" id="inputPassword4" required>
+                <input type="password" class="form-control" id="password" name="password" required>
             </div>
             <div class="col-12">
                 <button type="submit" class="btn btn-primary">註冊</button>
