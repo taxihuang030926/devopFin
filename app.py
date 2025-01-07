@@ -171,9 +171,8 @@ def edit_cv():
         else:
             flash('目前沒有履歷可以修改！', 'error')
             return redirect(url_for('cv'))
-    
+
     if request.method == 'POST':
-        print(request.form)
         # 接收用戶提交的修改後的履歷資料
         first_name = request.form['first_name']
         last_name = request.form['last_name']
@@ -184,12 +183,20 @@ def edit_cv():
         department = request.form['department']
         study_status = request.form['study_status']
         work_experience = request.form['work_experience']
-        resume_id = request.form['resume_id']
+        resume_id = request.form.get('resume_id')
+
+        # 確保 resume_id 存在
+        if not resume_id:
+            flash('履歷 ID 丟失！', 'error')
+            return redirect(url_for('edit_cv'))
 
         # 檢查是否有空值
         if not all([first_name, last_name, contact_info, school_name, education_level, department, study_status, work_experience]):
             flash('所有欄位皆為必填！', 'error')
-            return redirect(url_for('edit_cv'))
+            return render_template('editCV.html', first_name=first_name, last_name=last_name, contact_info=contact_info, 
+                                   transport=transport, school_name=school_name, education_level=education_level, 
+                                   department=department, study_status=study_status, work_experience=work_experience, 
+                                   resume_id=resume_id)
 
         # 更新資料庫
         query = """
