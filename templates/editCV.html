@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>修改履歷</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .cv-container {
+        display: flex;
+    }
+    .progress-sidebar {
+        width: 200px;
+        padding-right: 20px;
+    }
+    .progress-sidebar a {
+        display: block;
+        margin: 10px 0;
+        padding: 10px;
+        background-color: #f8f9fa;
+        text-decoration: none;
+        color: #000;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+    .progress-sidebar a:hover {
+        background-color: #007bff;
+        color: #fff;
+    }
+    .section-title {
+        margin-bottom: 20px;
+    }
+    .info-box {
+        margin-bottom: 20px;
+    }
+    .cv-form {
+        flex-grow: 1;
+    }
+    </style>
+</head>
+<body>
+    <div class="navigation-bar">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                    <a class="navbar-brand" href="/">123人力銀行</a>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="companies">Companies</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="cv">CV</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-outline-success" href="login" role="button">Login</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </div>
+   
+    <div class="cv-container container mt-4">
+        <!-- 左側進度區塊 -->
+        <div class="progress-sidebar">
+            <h3>履歷進度</h3>
+            <a href="javascript:void(0)" onclick="scrollToSection('personal-info')">個人資料</a>
+            <a href="javascript:void(0)" onclick="scrollToSection('education')">學歷</a>
+            <a href="javascript:void(0)" onclick="scrollToSection('work-experience')">工作經歷</a>
+        </div>
+
+    <div class="cv-form">
+    <h1 class="section-title">修改履歷</h1>
+    <form method="POST" action="/editCV">
+        <input type="hidden" name="resume_id" value="{{ resume['id'] }}"> <!-- 隱藏欄位提供 ID -->
+
+        <!-- 個人資料 -->
+        <div id="personal-info" class="info-box">
+        <h3>個人資料</h3>
+        <div class="row g-3">
+            <div class="col">
+            <label for="last_name" class="form-label">中文姓氏</label>
+            <input type="text" class="form-control" id="last_name" name="last_name" value="{{ resume['last_name'] }}" placeholder="姓" required>
+            </div>
+            <div class="col">
+            <label for="first_name" class="form-label">中文名字</label>
+            <input type="text" class="form-control" id="first_name" name="first_name" value="{{ resume['first_name'] }}" placeholder="名" required>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="contact_info" class="form-label">聯絡方式</label>
+            <input type="text" class="form-control" id="contact_info" name="contact_info" value="{{ resume['contact_info'] }}" placeholder="請輸入聯絡方式" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">交通工具</label>
+            <div>
+            <input type="checkbox" class="form-check-input" id="walking" name="transport" value="步行" {{ '步行' in resume['transport'] and 'checked' }}>
+            <label class="form-check-label" for="walking">步行</label>
+            </div>
+            <div>
+            <input type="checkbox" class="form-check-input" id="bicycle" name="transport" value="腳踏車" {{ '腳踏車' in resume['transport'] and 'checked' }}>
+            <label class="form-check-label" for="bicycle">腳踏車</label>
+            </div>
+            <div>
+            <input type="checkbox" class="form-check-input" id="public-transport" name="transport" value="大眾運輸" {{ '大眾運輸' in resume['transport'] and 'checked' }}>
+            <label class="form-check-label" for="public-transport">大眾運輸</label>
+            </div>
+            <div>
+            <input type="checkbox" class="form-check-input" id="motorcycle" name="transport" value="機車" {{ '機車' in resume['transport'] and 'checked' }}>
+            <label class="form-check-label" for="motorcycle">機車</label>
+            </div>
+            <div>
+            <input type="checkbox" class="form-check-input" id="car" name="transport" value="汽車" {{ '汽車' in resume['transport'] and 'checked' }}>
+            <label class="form-check-label" for="car">汽車</label>
+            </div>
+        </div>
+        </div>
+
+        <!-- 學歷 -->
+        <div id="education" class="info-box">
+        <h3>學歷</h3>
+        <div class="mb-3">
+            <label for="school_name" class="form-label">學校名稱</label>
+            <input type="text" class="form-control" id="school_name" name="school_name" value="{{ resume['school_name'] }}" placeholder="請輸入學校名稱" required>
+        </div>
+        <div class="mb-3">
+            <label for="education_level" class="form-label">學歷</label>
+            <select class="form-select" id="education_level" name="education_level" required>
+            <option value="" disabled {{ 'education_level' not in resume and 'selected' }}>請選擇學歷</option>
+            <option value="博士" {{ '博士' == resume['education_level'] and 'selected' }}>博士</option>
+            <option value="碩士" {{ '碩士' == resume['education_level'] and 'selected' }}>碩士</option>
+            <option value="大學" {{ '大學' == resume['education_level'] and 'selected' }}>大學</option>
+            <option value="二技" {{ '二技' == resume['education_level'] and 'selected' }}>二技</option>
+            <option value="五專" {{ '五專' == resume['education_level'] and 'selected' }}>五專</option>
+            <option value="高中" {{ '高中' == resume['education_level'] and 'selected' }}>高中</option>
+            <option value="高職" {{ '高職' == resume['education_level'] and 'selected' }}>高職</option>
+            <option value="國中(含)以下" {{ '國中(含)以下' == resume['education_level'] and 'selected' }}>國中(含)以下</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="department" class="form-label">科系名稱</label>
+            <input type="text" class="form-control" id="department" name="department" value="{{ resume['department'] }}" placeholder="請輸入科系名稱" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">就學狀態</label>
+            <div>
+            <input type="radio" class="form-check-input" id="graduated" name="study_status" value="畢業" {{ '畢業' == resume['study_status'] and 'checked' }}>
+            <label class="form-check-label" for="graduated">畢業</label>
+            </div>
+            <div>
+            <input type="radio" class="form-check-input" id="dropout" name="study_status" value="肄業" {{ '肄業' == resume['study_status'] and 'checked' }}>
+            <label class="form-check-label" for="dropout">肄業</label>
+            </div>
+            <div>
+            <input type="radio" class="form-check-input" id="studying" name="study_status" value="就學中" {{ '就學中' == resume['study_status'] and 'checked' }}>
+            <label class="form-check-label" for="studying">就學中</label>
+            </div>
+        </div>
+        </div>
+
+        <!-- 工作經歷 -->
+        <div id="work-experience" class="info-box">
+        <h3>工作經歷</h3>
+        <div class="mb-3">
+            <label for="work_experience" class="form-label">總年資</label>
+            <input type="text" class="form-control" id="work_experience" name="work_experience" value="{{ resume['work_experience'] }}" placeholder="請輸入工作經歷" required>
+        </div>
+        </div>
+
+        <!-- 提交按鈕 -->
+        <button type="submit" class="btn btn-success">保存修改</button>
+    </form>
+</div>
+
+<script>
+    function scrollToSection(sectionId) {
+        document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+    }
+</script>
+</body>
+</html>
