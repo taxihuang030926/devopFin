@@ -203,8 +203,9 @@ def submit_cv():
         return redirect(url_for('cv'))
 
     # 插入資料到資料庫
-    query = "INSERT INTO resumes (id, first_name, last_name, contact_info, transport, school_name, education_level, department, study_status, work_experience) VALUES ('%s','%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')"
-    cursor.execute(query, (username, first_name, last_name, contact_info, transport, school_name, education_level, department, study_status, work_experience))
+    query = '''INSERT INTO resumes (id, first_name, last_name, contact_info, transport, school_name, education_level, department, study_status, work_experience) 
+    VALUES ('%s','%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')''' % (username, first_name, last_name, contact_info, transport, school_name, education_level, department, study_status, work_experience)
+    cursor.execute(query)
     db.commit()
 
     flash('履歷提交成功！', 'success')
@@ -256,10 +257,10 @@ def edit_cv():
             school_name = '%s', education_level = '%s', department = '%s',
             study_status = '%s', work_experience = '%s'
         WHERE id = '%s'
-        """
-        cursor.execute(query, (first_name, last_name, contact_info, transport,
+        """  % (first_name, last_name, contact_info, transport,
                                school_name, education_level, department,
-                               study_status, work_experience, resume_id))
+                               study_status, work_experience, resume_id)
+        cursor.execute(query)
         db.commit()
 
         flash('履歷修改成功！', 'success')
