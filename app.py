@@ -8,17 +8,17 @@ app.secret_key = os.urandom(24)
 db = mc.connect(host="localhost", port=3306, user="admint", password="12341234", database="devopFin")
 cursor = db.cursor()
 
-@app.route('/') # done
+@app.route('/')
 def index():
     if 'username' in session:
         return render_template('index.html', username=session['username'])
     return render_template('index.html')
 
-@app.route('/login') # done
+@app.route('/login')
 def login():
     return render_template('login.html')
 
-@app.route('/login', methods=['POST']) # done
+@app.route('/login', methods=['POST'])
 def login_post():
     username = request.form['username']
     password = request.form['password']
@@ -39,7 +39,7 @@ def login_post():
     flash('Login successful!', 'success')
     return redirect(url_for('index'))
 
-@app.route('/logout') # done
+@app.route('/logout')
 def logout():
     if 'username' in session:
         session.pop('username')
@@ -48,13 +48,12 @@ def logout():
         flash('You are not logged in.', 'info')
     return redirect(url_for('index'))
 
-@app.route('/register') # done
+@app.route('/register')
 def register():
     return render_template('register.html')
 
-@app.route('/register', methods=['POST'])  # done
+@app.route('/register', methods=['POST'])
 def register_post():
-    print('register_post')
     username = request.form['username']
     password = request.form['password']
 
@@ -63,10 +62,8 @@ def register_post():
         return redirect(url_for('register'))
     
     query = "SELECT * FROM User WHERE ID = '%s'" % (username,)
-    print(query)
     cursor.execute(query)
     user = cursor.fetchone()
-    print(user)
     
     if user != None:
         flash('Username already exists!', 'error')
@@ -85,15 +82,40 @@ def vacancies():
     if 'username' not in session:
         flash('Please login to view vacancies!', 'info')
         return redirect(url_for('login'))
-    return render_template('vacancies.html', username=session['username'])
+    
+    cursor.execute("SELECT * FROM JobOpenings")
+    vacancies = cursor.fetchall()
+    for i in range(len(vacancies)):
+        query = "SELECT name FROM CompanyInformation WHERE company_id = '%s'" % (vacancies[i][1])
+        cursor.execute(query)
+        company_name = cursor.fetchone()
+        vacancies[i] += company_name
+    return render_template('vacancies.html', username=session['username'], vacancies=vacancies)
 
-@app.route('/companies') # done
+@app.route('/vacancies', methods=['POST'])
+def search_vacancies():
+    if 'username' not in session:
+        flash('Please login to view vacancies!', 'info')
+        return redirect(url_for('login'))
+    
+    keyword = request.form['search_vacancies']
+    query = "SELECT * FROM JobOpenings WHERE job_title LIKE '%%%s%%'" % (keyword)
+    cursor.execute(query)
+    vacancies = cursor.fetchall()
+    for i in range(len(vacancies)):
+        query = "SELECT name FROM CompanyInformation WHERE company_id = '%s'" % (vacancies[i][1])
+        cursor.execute(query)
+        company_name = cursor.fetchone()
+        vacancies[i] += company_name
+    return render_template('vacancies.html', username=session['username'], keyword=keyword, vacancies=vacancies)
+
+@app.route('/companies')
 def companies():
     if 'username' in session:
         return render_template('companies.html', username=session['username'])
     return render_template('companies.html')
 
-@app.route('/about_company/<int:company_id>') # done
+@app.route('/about_company/<int:company_id>')
 def about_company(company_id):
     print("company_id: ", company_id)
     cursor.execute("SELECT * FROM CompanyInformation WHERE company_id = '%s'" % (company_id))
@@ -138,7 +160,7 @@ def about_company(company_id):
                            jobs=jobs, 
                            contact=contact, username=session['username'])
 
-@app.route('/cv') # done
+@app.route('/cv')
 def cv():
     # 連接資料庫並查詢履歷資料
     cursor = db.cursor()
@@ -246,34 +268,3 @@ def edit_cv():
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-'''
-TODO: 
-1. Create a simple login page with username and password [kung done]
-2. Create a session for the user [tim ]
-3. Create a logout function [tim] (if user is in session -> logout; button in navbar)
-4. Create a registration page [tim partial]
-5. Create a database to store the user information [kung in progress]
-6. Create a function to check if the user is in the database [tim ]
-7. Create a function to check if the username is correct [tim ]
-8. Create a function to check if the password is correct [tim ]
-9. Create a function to search for vacancies or companies in navbar [tim ]
-10. Create CV template [chiao done]
-11. Create a function to render the CV template [chiao in progress]
-
-.
-|
-|-  index.html [tim done]
-|-  register.html [tim partial]
-|-  companies.html [tim partial]
-|   |-  about_company.html (by clicking on the company button in companies.html,
-|   |   it will redirect to this page. 
-|   |   fetch the data from the database then render it, show link to company website, (user should be logged in) show vacancies available & details)
-|   |   [tim ]
-|-  vacancies.html [tim ]
-|-  cv.html [chiao partial] (provide a cv template for the user to fill in)
-|-  login.html [kung done]
-
-
-'''
-

@@ -33,3 +33,11 @@ html, body {
 .register-container {
     margin-top: 50px;
 }
+
+.vacancies-container {
+    margin: 40px;
+}
+
+.cv-container {
+    margin: 40px;
+}
