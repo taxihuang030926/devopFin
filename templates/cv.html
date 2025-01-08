@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV</title>
+    <meta name="description" content="123人力銀行提供完整的履歷建立與職缺搜尋功能，幫助求職者快速找到合適的工作。">
+    <title>123人力銀行 - 我的履歷</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../static/css/style.css">
@@ -43,31 +43,24 @@
             </div>
         </nav>
     </div>
-  </nav>
-</div>
 
-<div class="cv-container container">
-    <h1 class="section-title">個人履歷</h1>
-  
-    <!-- 履歷顯示區 -->
-    <div id="cv-display" class="info-box">
-      {% if resume %}
-        <p><strong>姓名:</strong> {{ resume[1] }} {{ resume[2] }}</p>
-        <p><strong>聯絡資訊:</strong> {{ resume[3] }}</p>
-        <p><strong>交通工具:</strong> {{ resume[4] }}</p>
-        <p><strong>學校名稱:</strong> {{ resume[5] }}</p>
-        <p><strong>學歷:</strong> {{ resume[6] }}</p>
-        <p><strong>科系:</strong> {{ resume[7] }}</p>
-        <p><strong>學習狀況:</strong> {{ resume[8] }}</p>
-        <p><strong>工作經驗:</strong> {{ resume[9] }}</p>
-      {% else %}
-        <p>目前尚未上傳履歷。</p>
-      {% endif %}
+    <div class="cv-container container">
+        <h1 class="section-title">個人履歷</h1>
+        <div id="cv-display" class="info-box">
+            {% if resume %}
+                <p><strong>姓名:</strong> {{ resume[1] }} {{ resume[2] }}</p>
+                <p><strong>聯絡資訊:</strong> {{ resume[3] }}</p>
+                <p><strong>交通工具:</strong> {{ resume[4] }}</p>
+                <p><strong>學校名稱:</strong> {{ resume[5] }}</p>
+                <p><strong>學歷:</strong> {{ resume[6] }}</p>
+                <p><strong>科系:</strong> {{ resume[7] }}</p>
+                <p><strong>學習狀況:</strong> {{ resume[8] }}</p>
+                <p><strong>工作經驗:</strong> {{ resume[9] }}</p>
+            {% else %}
+                <p>目前尚未上傳履歷。</p>
+            {% endif %}
+        </div>
+        <a href="uploadCV" class="btn btn-primary">上傳履歷</a>
     </div>
-  
-    <!-- 顯示上傳按鈕，並連結到 uploadCV.html -->
-    <a href="uploadCV" class="btn btn-primary">上傳履歷</a>
-  </div>
-  
 </body>
 </html>
