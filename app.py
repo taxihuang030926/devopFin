@@ -52,7 +52,7 @@ def logout():
 def register():
     return render_template('register.html')
 
-@app.route('/register', methods=['POST']) 
+@app.route('/register', methods=['POST'])  # done
 def register_post():
     print('register_post')
     username = request.form['username']
@@ -87,39 +87,48 @@ def vacancies():
         return redirect(url_for('login'))
     return render_template('vacancies.html', username=session['username'])
 
-@app.route('/companies')
+@app.route('/companies') # done
 def companies():
     if 'username' in session:
         return render_template('companies.html', username=session['username'])
     return render_template('companies.html')
 
-@app.route('/about_company/<int:company_id>')
+@app.route('/about_company/<int:company_id>') # done
 def about_company(company_id):
-    cursor.execute("SELECT * FROM CompanyInformation WHERE company_id = '%s'", (company_id,))
+    print("company_id: ", company_id)
+    cursor.execute("SELECT * FROM CompanyInformation WHERE company_id = '%s'" % (company_id))
     company = cursor.fetchone()
+    print("company: ", company)
 
-    cursor.execute("SELECT * FROM CompanyIntroduction WHERE company_id = '%s'", (company_id,))
+    cursor.execute("SELECT * FROM CompanyIntroduction WHERE company_id = '%s'" % (company_id))
     introduction = cursor.fetchone()
+    print("introduction: ", introduction)
     
-    cursor.execute("SELECT * FROM BusinessPhilosophy WHERE company_id = '%s'", (company_id,))
+    cursor.execute("SELECT * FROM BusinessPhilosophy WHERE company_id = '%s'" % (company_id))
     philosophy = cursor.fetchone()
+    print("philosophy: ", philosophy)
 
-    cursor.execute("SELECT * FROM CompanyBenefits WHERE company_id = '%s'", (company_id,))
+    cursor.execute("SELECT * FROM CompanyBenefits WHERE company_id = '%s'" % (company_id))
     benefits = cursor.fetchall()
+    print("benefits: ", benefits)
     
-    cursor.execute("SELECT * FROM JobOpenings WHERE company_id = '%s'", (company_id,))
+    cursor.execute("SELECT * FROM JobOpenings WHERE company_id = '%s'" % (company_id))
     jobs = cursor.fetchall()
+    if 'username' not in session:
+        jobs = [(0, 0, '', '登入後即可查看職缺', '', '', '', '', '')]
+    print("jobs: ", jobs)
     
-    cursor.execute("SELECT * FROM ContactInfo WHERE company_id = '%s'", (company_id,))
+    cursor.execute("SELECT * FROM ContactInfo WHERE company_id = '%s'" % (company_id))
     contact = cursor.fetchone()
+    print("contact: ", contact)
 
     if 'username' not in session:
         return render_template('about_company.html',
                                company=company, 
                                introduction=introduction, 
                                philosophy=philosophy, 
-                               benefits=benefits, 
-                               jobs=jobs, 
+                               benefits=benefits,
+                               jobs=jobs,  
                                contact=contact)
     return render_template('about_company.html',
                            company=company, 
@@ -129,7 +138,7 @@ def about_company(company_id):
                            jobs=jobs, 
                            contact=contact, username=session['username'])
 
-@app.route('/cv')
+@app.route('/cv') # done
 def cv():
     # 連接資料庫並查詢履歷資料
     cursor = db.cursor()
@@ -154,6 +163,7 @@ def uploadCV():
 
 @app.route('/submit_cv', methods=['POST'])
 def submit_cv():
+    username = session['username']
     # 取得表單資料
     first_name = request.form['first_name']
     last_name = request.form['last_name']
@@ -171,11 +181,8 @@ def submit_cv():
         return redirect(url_for('cv'))
 
     # 插入資料到資料庫
-    query = """
-    INSERT INTO resumes (first_name, last_name, contact_info, transport, school_name, education_level, department, study_status, work_experience)
-    VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')
-    """
-    cursor.execute(query, (first_name, last_name, contact_info, transport, school_name, education_level, department, study_status, work_experience))
+    query = "INSERT INTO resumes (id, first_name, last_name, contact_info, transport, school_name, education_level, department, study_status, work_experience) VALUES ('%s','%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')"
+    cursor.execute(query, (username, first_name, last_name, contact_info, transport, school_name, education_level, department, study_status, work_experience))
     db.commit()
 
     flash('履歷提交成功！', 'success')
