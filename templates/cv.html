@@ -44,9 +44,9 @@
                         </li>
                         {% endif %}
                     </ul>
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    <form class="d-flex" role="search" action="/vacancies" method="POST">
+                        <input class="form-control me-2" type="search" placeholder="輸入關鍵字" aria-label="Search" name="search_vacancies">
+                        <button class="btn btn-outline-success" type="submit">搜尋</button>
                     </form>
                 </div>
             </div>
@@ -72,34 +72,34 @@
         {% endif %}
         </div>
     
-    </div>
-  
-    <!-- 按鈕區 -->
-    <div class="btn-group">
-      {% if resume %}
-        <a href="editCV" class="btn btn-warning">修改履歷</a>
+        <!-- 按鈕區 -->
         <div class="btn-group">
-            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-              求職攻略
-            </button>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="https://careermaster.1111.com.tw/careermaster/resume/JobArticleAll">求職文章</a></li>
-                <li><a class="dropdown-item" href="https://careermaster.1111.com.tw/careermaster/resume/JobQA">求職QA</a></li>
-                <li><a class="dropdown-item" href="https://www.1111.com.tw/1000w/fanshome/discuss.asp?gkind=136&cat=fans&act=search&kind=5&q=%E7%B2%BE%E9%81%B8%E6%8A%95%E7%A8%BF">面試分享</a></li>
-            </ul>
-         </div>
-    
-          <!-- 履歷範本按鈕 -->
-          <a href="https://careermaster.1111.com.tw/careermaster/resume/Template?Position=%E7%AE%A1%E7%90%86%E5%B9%95%E5%83%9A%EF%BC%8F%E4%BA%BA%E8%B3%87%EF%BC%8F%E8%A1%8C%E6%94%BF" class="btn btn-info" target="_blank">履歷範本</a>
-        </div>
-    
-      {% else %}
-        <a href="uploadCV" class="btn btn-primary">上傳履歷</a>
-      {% endif %}
+          {% if resume %}
+            <a href="editCV" class="btn btn-warning">修改履歷</a>
+            <div class="btn-group">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                  求職攻略
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="https://careermaster.1111.com.tw/careermaster/resume/JobArticleAll">求職文章</a></li>
+                    <li><a class="dropdown-item" href="https://careermaster.1111.com.tw/careermaster/resume/JobQA">求職QA</a></li>
+                    <li><a class="dropdown-item" href="https://www.1111.com.tw/1000w/fanshome/discuss.asp?gkind=136&cat=fans&act=search&kind=5&q=%E7%B2%BE%E9%81%B8%E6%8A%95%E7%A8%BF">面試分享</a></li>
+                </ul>
+             </div>
+        
+              <!-- 履歷範本按鈕 -->
+              <a href="https://careermaster.1111.com.tw/careermaster/resume/Template?Position=%E7%AE%A1%E7%90%86%E5%B9%95%E5%83%9A%EF%BC%8F%E4%BA%BA%E8%B3%87%EF%BC%8F%E8%A1%8C%E6%94%BF" class="btn btn-info" target="_blank">履歷範本</a>
+            </div>
+        
+          {% else %}
+            <a href="uploadCV" class="btn btn-primary">上傳履歷</a>
+          {% endif %}
+          
+          <!-- 求職攻略下拉選單 -->
       
-      <!-- 求職攻略下拉選單 -->
-  
+        </div>
     </div>
+  
 
 </body>
 </html>

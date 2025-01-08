@@ -43,9 +43,9 @@
                         </li>
                         {% endif %}
                     </ul>
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    <form class="d-flex" role="search" action="/vacancies" method="POST">
+                        <input class="form-control me-2" type="search" placeholder="輸入關鍵字" aria-label="Search" name="search_vacancies">
+                        <button class="btn btn-outline-success" type="submit">搜尋</button>
                     </form>
                 </div>
             </div>
@@ -54,121 +54,121 @@
 
     <div class="companies-container">
         <div class="row">
-            <a class="card" style="width: 18rem; margin: 2px;" href="about_company/1" target="_blank" rel="noopener noreferrer">
+            <a class="card" style="width: 18rem; margin: 2px;" href="about_company/1">
                 <img src="../static/images/companies/南茂科技_logo.png" class="card-img-top" alt="...">
                 <div class="card-body">
                     <p class="card-text">南茂科技股份有限公司</p>
                 </div>
             </a>
-            <a class="card" style="width: 18rem; margin: 2px;" href="about_company/2" target="_blank" rel="noopener noreferrer">
+            <a class="card" style="width: 18rem; margin: 2px;" href="about_company/2">
                 <img src="../static/images/companies/光寶科技_logo.png" class="card-img-top" alt="...">
                 <div class="card-body">
                     <p class="card-text">光寶科技股份有限公司</p>
                 </div>
             </a>
-            <a class="card" style="width: 18rem; margin: 2px;" href="about_company/3" target="_blank" rel="noopener noreferrer">
+            <a class="card" style="width: 18rem; margin: 2px;" href="about_company/3">
                 <img src="../static/images/companies/欣銓科技_logo.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                     <p class="card-text">欣銓科技股份有限公司</p>
                 </div>
             </a>
-            <a class="card" style="width: 18rem; margin: 2px;" href="about_company/4" target="_blank" rel="noopener noreferrer">
+            <a class="card" style="width: 18rem; margin: 2px;" href="about_company/4">
                 <img src="../static/images/companies/3A_LogoCMYK-01.png" class="card-img-top" alt="...">
                 <div class="card-body">
                     <p class="card-text">三甲科技股份有限公司</p>
                 </div>
             </a>
-            <a class="card" style="width: 18rem; margin: 2px;" href="about_company/5" target="_blank" rel="noopener noreferrer">
+            <a class="card" style="width: 18rem; margin: 2px;" href="about_company/5">
                 <img src="../static/images/companies/HIWIN_CMYK.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                     <p class="card-text">上銀科技</p>
                 </div>
             </a>
-            <a class="card" style="width: 18rem; margin: 2px;" href="about_company/6" target="_blank" rel="noopener noreferrer">
+            <a class="card" style="width: 18rem; margin: 2px;" href="about_company/6">
                 <img src="../static/images/companies/CTBC綠底白字.png" class="card-img-top" alt="...">
                 <div class="card-body">
                     <p class="card-text">中國信託</p>
                 </div>
             </a>
-            <a class="card" style="width: 18rem; margin: 2px;" href="about_company/7" target="_blank" rel="noopener noreferrer">
+            <a class="card" style="width: 18rem; margin: 2px;" href="about_company/7">
                 <img src="../static/images/companies/凌網資訊logo全彩-07.png" class="card-img-top" alt="...">
                 <div class="card-body">
                     <p class="card-text">凌網資訊股份有限公司</p>
                 </div>
             </a>
-            <a class="card" style="width: 18rem; margin: 2px;" href="about_company/8" target="_blank" rel="noopener noreferrer">
+            <a class="card" style="width: 18rem; margin: 2px;" href="about_company/8">
                 <img src="../static/images/companies/SYSCOM.png" class="card-img-top" alt="...">
                 <div class="card-body">
                     <p class="card-text">凌群電腦股份有限公司</p>
                 </div>
             </a>
-            <a class="card" style="width: 18rem; margin: 2px;" href="about_company/9" target="_blank" rel="noopener noreferrer">
+            <a class="card" style="width: 18rem; margin: 2px;" href="about_company/9">
                 <img src="../static/images/companies/台中銀行Logo-白底僅供預覽1.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                     <p class="card-text">台中商業銀行</p>
                 </div>
             </a>
-            <a class="card" style="width: 18rem; margin: 2px;" href="about_company/10" target="_blank" rel="noopener noreferrer">
+            <a class="card" style="width: 18rem; margin: 2px;" href="about_company/10">
                 <img src="../static/images/companies/國家運動科學中心_logo.png" class="card-img-top" alt="...">
                 <div class="card-body">
                     <p class="card-text">國家運動科學中心</p>
                 </div>
             </a>
-            <a class="card" style="width: 18rem; margin: 2px;" href="about_company/11" target="_blank" rel="noopener noreferrer">
+            <a class="card" style="width: 18rem; margin: 2px;" href="about_company/11">
                 <img src="../static/images/companies/國泰人壽_logo.jpeg" class="card-img-top" alt="...">
                 <div class="card-body">
                     <p class="card-text">國泰人壽保險股份有限公司</p>
                 </div>
             </a>
-            <a class="card" style="width: 18rem; margin: 2px;" href="about_company/12" target="_blank" rel="noopener noreferrer">
+            <a class="card" style="width: 18rem; margin: 2px;" href="about_company/12">
                 <img src="../static/images/companies/3A_LogoCMYK-01.png" class="card-img-top" alt="...">
                 <div class="card-body">
                     <p class="card-text">天眼衛星科技股份有限公司</p>
                 </div>
             </a>
-            <a class="card" style="width: 18rem; margin: 2px;" href="about_company/13" target="_blank" rel="noopener noreferrer">
+            <a class="card" style="width: 18rem; margin: 2px;" href="about_company/13">
                 <img src="../static/images/companies/EPISTAR.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                     <p class="card-text">晶元光電股份有限公司</p>
                 </div>
             </a>
-            <a class="card" style="width: 18rem; margin: 2px;" href="about_company/14" target="_blank" rel="noopener noreferrer">
+            <a class="card" style="width: 18rem; margin: 2px;" href="about_company/14">
                 <img src="../static/images/companies/經貿聯網_logo.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                     <p class="card-text">經貿聯網科技股份有限公司</p>
                 </div>
             </a>
-            <a class="card" style="width: 18rem; margin: 2px;" href="about_company/15" target="_blank" rel="noopener noreferrer">
+            <a class="card" style="width: 18rem; margin: 2px;" href="about_company/15">
                 <img src="../static/images/companies/財團法人精密機械研究發展中心_logo.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                     <p class="card-text">財團法人精密機械研究發展中心</p>
                 </div>
             </a>
-            <a class="card" style="width: 18rem; margin: 2px;" href="about_company/16" target="_blank" rel="noopener noreferrer">
+            <a class="card" style="width: 18rem; margin: 2px;" href="about_company/16">
                 <img src="../static/images/companies/精誠隨想_logo.png" class="card-img-top" alt="...">
                 <div class="card-body">
                     <p class="card-text">精誠隨想行動科技股份有限公司</p>
                 </div>
             </a>
-            <a class="card" style="width: 18rem; margin: 2px;" href="about_company/17" target="_blank" rel="noopener noreferrer">
+            <a class="card" style="width: 18rem; margin: 2px;" href="about_company/17">
                 <img src="../static/images/companies/大豐環保科技_logo.jpeg" class="card-img-top" alt="...">
                 <div class="card-body">
                     <p class="card-text">大豐環保科技股份有限公司</p>
                 </div>
             </a>
-            <a class="card" style="width: 18rem; margin: 2px;" href="about_company/18" target="_blank" rel="noopener noreferrer">
+            <a class="card" style="width: 18rem; margin: 2px;" href="about_company/18">
                 <img src="../static/images/companies/west_logo.png" class="card-img-top" alt="...">
                 <div class="card-body">
                     <p class="card-text">西氏亞洲有限公司</p>
                 </div>
             </a>
-            <a class="card" style="width: 18rem; margin: 2px;" href="about_company/19" target="_blank" rel="noopener noreferrer">
+            <a class="card" style="width: 18rem; margin: 2px;" href="about_company/19">
                 <img src="../static/images/companies/trade-van-logo.png" class="card-img-top" alt="...">
                 <div class="card-body">
                     <p class="card-text">關貿網路股份有限公司</p>
                 </div>
             </a>
-            <a class="card" style="width: 18rem; margin: 2px;" href="about_company/20" target="_blank" rel="noopener noreferrer">
+            <a class="card" style="width: 18rem; margin: 2px;" href="about_company/20">
                 <img src="../static/images/companies/鈦坦科技.png" class="card-img-top" alt="...">
                 <div class="card-body">
                     <p class="card-text">新加坡商鈦坦科技股份有限公司台灣分公司</p>
